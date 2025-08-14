@@ -1,0 +1,67 @@
+CREATE DATABASE escola;
+
+USE escola;
+
+CREATE TABLE professor (
+id_professor INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+especialidade VARCHAR(100),
+salario DECIMAL(10,2),
+uf CHAR(2)
+);
+
+CREATE TABLE disciplina (
+id_disciplina INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+nome VARCHAR(100),
+id_professor INT,
+carga_horaria INT,
+FOREIGN KEY (id_professor) REFERENCES professor(id_professor)
+);
+
+CREATE TABLE aluno (
+id_aluno INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+sexo CHAR(1),
+data_nascimento DATE,
+nota_final DECIMAl(4,2),
+ativo BOOLEAN
+);
+
+CREATE TABLE curso(
+id_curso INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+carga_horaria INT,
+modalidade VARCHAR(50)
+);
+
+CREATE TABLE matricula (
+id_matricula INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id_aluno INT,
+id_curso INT,
+data_matricula DATE,
+FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno),
+FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
+);
+
+CREATE TABLE login (
+id_login INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+id_aluno INT,
+data_hora DATETIME,
+ip VARCHAR(40),
+sucesso BOOLEAN,
+FOREIGN KEY (id_aluno) REFERENCES aluno(id_aluno)
+);
+
+SHOW TABLES;
+
+-- insert dados professor
+INSERT INTO professor (id_professor,nome,especialidade,salario,uf) VALUES
+(2,'João da silva', 'Banco de dados',2500.00,'PR');
+
+-- insert disciplinas
+INSERT INTO disciplina(nome,id_professor,carga_horaria) VALUES
+('Banco de dados iniciante', 1, 60);
+
+-- insert aluno
+INSERT INTO aluno(nome,sexo,data_nascimento,nota_final) VALUE
+('Elda Bogue','F',2009-07-31, 8.5, TRUE);
