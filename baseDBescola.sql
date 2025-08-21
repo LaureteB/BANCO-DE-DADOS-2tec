@@ -80,3 +80,45 @@ INSERT INTO matricula (id_aluno, id_curso, data_matricula) VALUES
 INSERT INTO login (id_aluno, data_hora, ip, sucesso) VALUES
 (1, '2024-05-01 08:30:00', '192.168.1.10', TRUE),
 (2, '2024-05-01 09:15:00', '192.168.1.11', FALSE);
+
+use escola;
+show tables;
+
+SELECT * FROM aluno;
+
+SELECT
+	m.id_matricula,
+	a.nome AS aluno,
+	c.nome AS curso,
+	m.data_matricula
+FROM matricula m
+JOIN aluno a ON m.id_aluno = a.id_aluno
+JOIN curso c ON m.id_curso = c.id_curso;
+
+-- Professores
+INSERT INTO professor (nome, especialidade, salario, uf) VALUES
+('Eloá de Cuba', 'Portugues', 7000.00, 'PR');
+SELECT*FROM professor;
+
+-- Disciplinas
+INSERT INTO disciplina (nome, id_professor, carga_horaria) VALUES
+('Portugues', 3, 120);
+
+
+-- Alunos
+INSERT INTO aluno (nome, sexo, data_nascimento, nota_final, ativo) VALUES
+('Eduarda Cafarel', 'F', '2000-08-20', 5.4, TRUE);
+SELECT*FROM aluno;
+
+-- Cursos
+INSERT INTO curso (nome, carga_horaria, modalidade) VALUES
+('Tatuagem', 30, 'Presencial');
+SELECT*FROM curso;
+
+-- Matrículas
+INSERT INTO matricula (id_aluno, id_curso, data_matricula) VALUES
+(3, 3, '2024-01-20');
+
+-- Logins
+INSERT INTO login (id_aluno, data_hora, ip, sucesso) VALUES
+(3, '2024-05-01 09:15:30', '192.168.1.11', TRUE);
